@@ -1,0 +1,42 @@
+doctype html 
+html  
+    head
+        block head
+            meta(charset='UTF-8')
+            meta(name='viewport' content='width=device-width, initial-scale=1.0')
+            //-in HTML: <link rel="stylesheet" href="css/style.css" /> can use this in Pug also
+            link(rel='stylesheet' href='/css/style.css')
+            //-css gets loaded automatically-- creates requests, sort of like route request
+            //-because of static from public 
+            link(rel='shortcut icon' type='image/png' href='/img/favicon.png')
+            link( rel='stylesheet' href='https://fonts.googleapis.com/css?family=Lato:300,300i,700')
+            title Natours | #{title}
+            
+    body 
+        //HEADER
+        include _header 
+
+        //CONTENT
+        block content 
+            h1 This is a placeholder heading 
+
+        //FOOTER
+        include _footer
+        //- script(src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.1/axios.min.js" integrity="sha512-w9PRLSWbo+Yqin/AzSMGoP+qe8UF1njFtd1rEnR58Xv2GEJNEa6O6Bv53mkPbNyAwGCn1HVt1OOvd5i+E55t+w==" crossorigin="anonymous" referrerpolicy="no-referrer")
+        //- script(src='/js/mapbox.js')
+        //- script(src='/js/login.js')
+        script(src="https://js.stripe.com/v3/")
+        script(src='/js/bundle.js')
+        //- keeping such separate files is not a good practice, we should keep all frontend javascript related code in one called module bundler
+        //- webpack famous but requires configuration so we use parcel
+        
+
+//-   h1= tour
+//-   h2= user.toUpperCase()
+//-   //-simple JavaScript in buffered code
+
+//-   //- unbuffered code- does not add anything to the output
+//-   - const x=9;
+//-   h2= 2*x 
+//-   //-now we get access to x and shows 18
+//-   p This is just some text 
