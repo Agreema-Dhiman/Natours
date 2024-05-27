@@ -10,6 +10,8 @@ const app = express();
 const morgan = require('morgan');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const compression = require('compression');
+
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
@@ -90,6 +92,9 @@ app.use('/api', limiter);
 //so that the client can request static files like html and image
 //so when 127.0.0.1:3000/overview.html, it looks in public folder and returns that
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(compression());
+//works to compress text that is sent to client
 
 //Test middleware
 //applies on all requests in order
