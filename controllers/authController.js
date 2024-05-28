@@ -105,11 +105,13 @@ exports.logout = (req, res) => {
   //so override that cookie by this new one with random text as token
   //so this indicates that user will not be identified and thus logged out
   res.cookie('jwt', 'loggedout', {
-    expires: new Date(Date.now() + 10 * 1000),
+    // expires: new Date(Date.now() + 10 * 1000),
     httpOnly: true,
+    maxAge: 1,
   });
   res.status(200).json({ status: 'success' });
 };
+
 //middleware function to protect routes- only access on login
 exports.protect = catchAsync(async (req, res, next) => {
   //1) Getting token and check if its there

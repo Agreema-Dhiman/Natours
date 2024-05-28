@@ -41,6 +41,23 @@ exports.getLoginForm = catchAsync(async (req, res, next) => {
   });
 });
 
+exports.getSignupForm = catchAsync(async (req, res, next) => {
+  res.status(200).render('signup', {
+    title: 'Create your account',
+  });
+});
+
+exports.getReviewForm = catchAsync(async (req, res, next) => {
+  const tour = await Tour.findById(req.params.tourID);
+  if (!tour) {
+    return next(new AppError('There is no tour with that ID', 404));
+  }
+  res.status(200).render('review', {
+    title: 'Submit Review',
+    tour,
+  });
+});
+
 exports.getAccount = (req, res) => {
   res.status(200).render('account', {
     title: 'Your account',

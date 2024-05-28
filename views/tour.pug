@@ -71,6 +71,11 @@ block content
 
     section.section-reviews
         .reviews
+            if user
+                .reviews__card
+                    .reviews__avatar
+                        h6.reviews__user Give A Review Of The Tour
+                    a.btn.btn--green(href=`/createReview/${tour._id}`) Click Here
             each review in tour.reviews
                 +reviewCard(review)
 
@@ -89,3 +94,4 @@ block content
                 //-because we require tourid for the checkout session 
             else 
                 a.btn.btn--green.span-all-rows(href='/login') Login to book tour
+

@@ -39,8 +39,34 @@ export const logout = async () => {
 
       //This is an AJAX request we cannot do it on the backend side -> so not with express
     });
-    if (res.data.status === 'success') location.reload(true);
+    // if (res.data.status === 'success') location.reload(true);
+    if (res.data.status === 'success') window.location.href = '/';
   } catch (err) {
     showAlert('error', 'Error logging out ! Try again.');
   }
+};
+
+export const signup = async (name, email, password, passwordConfirm) => {
+  try {
+    const res = await axios({
+      method: 'POST',
+      url: '/api/v1/users/signup', //works because API and website are hosted at the same location
+      data: {
+        name,
+        email,
+        password,
+        passwordConfirm,
+      },
+    });
+
+    if (res.data.status === 'success') {
+      showAlert('success', 'Signed up successfully!');
+      window.setTimeout(() => {
+        location.assign('/');
+      }, 1500);
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+  //axios returns a promise so async await
 };

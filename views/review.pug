@@ -1,0 +1,15 @@
+extends base 
+
+block content
+    main.main
+        .login-form
+            h2.heading-secondary.ma-bt-lg= `Give us your Review of ${tour.name}` 
+            form.form.form--review(data-tour-id=`${tour._id}`)
+                .form__group
+                    label.form__label(for='review') Review
+                    input#reviewtext.form__input(type='text',required)
+                .form__group
+                    label.form__label(for='rating') Rating
+                    input#rating.form__input(type='text', placeholder='Give a value from 1 to 5')
+                .form__group
+                    button.btn.btn--green Submit

@@ -22,3 +22,22 @@ export const updateUser = async (data, type) => {
   }
   //axios returns a promise so async await
 };
+
+export const addReview = async (review, rating, tourID) => {
+  try {
+    const url = `/api/v1/tours/${tourID}/reviews`;
+    const res = await axios({
+      method: 'POST',
+      url,
+      data: {
+        review,
+        rating,
+      },
+    });
+    if (res.data.status === 'success') {
+      showAlert('success', 'Review uploaded successfully!');
+    }
+  } catch (err) {
+    showAlert('error', err.response.data.message);
+  }
+};
